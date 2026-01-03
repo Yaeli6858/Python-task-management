@@ -79,12 +79,23 @@ class UpdateTaskView(UpdateView):
 
     def get_queryset(self):
         user = self.request.user
-
         if user.userStatus == 0:  # מנהל
             return Task.objects.filter(team=user.team, task_performer__isnull=True)
         else:  # עובד
             return Task.objects.filter(task_performer=user)
 
+    # כאן מוסיפים את form_valid כדי לעדכן את סטטוס
+    def form_valid(self, form):
+        task = form.save(commit=False)
+
+        # אם יש task_performer, סטטוס צריך להיות In Progress
+        if task.task_performer:
+            task.taskStatus = 1  # In Progress
+        else:
+            task.taskStatus = 0  # New
+
+        task.save()
+        return redirect(self.get_success_url())
 
 @method_decorator(login_required, name='dispatch')
 class DeleteTaskView(DeleteView):

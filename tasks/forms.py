@@ -7,10 +7,18 @@ class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
         fields = ['title', 'description', 'goalDate', 'task_performer']
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter task title'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Enter task description'}),
+            'goalDate': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'task_performer': forms.Select(attrs={'class': 'form-control'}),
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        # מוודא ששדה מבצע המשימה לא חובה
         self.fields['task_performer'].required = False
+
 
 
 class CustomUserCreationForm(UserCreationForm):
