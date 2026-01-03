@@ -118,6 +118,20 @@
         }
 
         .btn-add-task:hover { background-color: #0b5ed7; }
+        .filter-form button {
+    background-color: #0d6efd;
+    border: none;
+    color: white;
+    padding: 8px 15px; /* גודל אחיד כמו קודם */
+    border-radius: 6px;
+    height: auto; /* מוודא שהכפתור לא "נמתח" לגובה השדות */
+    align-self: end; /* מרכז את הכפתור ביחס לשאר השדות */
+}
+
+.filter-form button:hover {
+    background-color: #0b5ed7;
+}
+
     </style>
 </head>
 <body>
@@ -132,11 +146,24 @@
 
 <!-- סינון inline -->
 <form method="get" class="filter-form">
-    {% for field in filter_form %}
-        {{ field }}
-    {% endfor %}
-    <button type="submit">Filter</button>
+    <div>
+        <label for="{{ filter_form.status.id_for_label }}" style="display:block; font-weight:500; margin-bottom:2px; color:#0d6efd;">Status</label>
+        {{ filter_form.status }}
+    </div>
+
+    <div>
+        <label for="{{ filter_form.assigned.id_for_label }}" style="display:block; font-weight:500; margin-bottom:2px; color:#0d6efd;">Assignment</label>
+        {{ filter_form.assigned }}
+    </div>
+
+    <div>
+        <label for="{{ filter_form.worker_id.id_for_label }}" style="display:block; font-weight:500; margin-bottom:2px; color:#0d6efd;">Worker</label>
+        {{ filter_form.worker_id }}
+    </div>
+
+    <button type="submit" >Filter</button>
 </form>
+
 
 <!-- טבלת משימות -->
 <table>
