@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .forms import TaskForm, CustomUserCreationForm, TaskFilterForm
+from .forms import TaskForm, CustomUserCreationForm, TaskFilterForm,ProfileForm
 from .models import Task
 
 
@@ -121,7 +121,7 @@ def take_task_view(request, pk):
 
 @login_required
 def profile_view(request):
-    return render(request, "accounts/profile.html", {
+    return render(request, "tasks/profile.html", {
         "user": request.user
     })
 
@@ -155,3 +155,33 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("login")
+from .forms import ProfileForm
+
+@login_required
+def profile_view(request):
+    user = request.user
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('task_list')
+    else:
+        form = ProfileForm(instance=user)
+
+    return render(request, 'tasks/profile.html', {'form': form})
+
+@login_required
+def complete_task_view(request, pk):
+    task = get_object_or_404(
+        Task,
+        pk=pk,
+        task_performer=request.user,  # רק עובד שהשלים משימה יכול לסמן
+        team=request.user.team
+    )
+
+    if request.method == "POST":
+        task.taskStatus = 2  # Completed
+        task.save()
+
+    return redirect('task_list')

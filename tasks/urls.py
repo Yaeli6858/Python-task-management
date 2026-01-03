@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import complete_task_view
 
 urlpatterns = [
 
@@ -16,6 +17,10 @@ path("", views.TaskListView.as_view(), name="home"),
     path("tasks/<int:pk>/delete/", views.DeleteTaskView.as_view(), name="task_delete"),
 
 path('tasks/<int:pk>/take/', views.take_task_view, name='task_take'),
-path("profile/", views.profile_view, name="profile")
+path("profile/", views.profile_view, name="profile"),
+
+path('tasks/<int:pk>/complete/', complete_task_view, name='task_complete'),
+
+
 ]
 

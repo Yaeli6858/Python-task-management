@@ -14,6 +14,23 @@ class TaskForm(forms.ModelForm):
 
 
 class CustomUserCreationForm(UserCreationForm):
+    password1 = forms.CharField(
+        label="Password",
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'data-bs-toggle': 'tooltip',
+            'data-bs-placement': 'right',
+            'title': 'The password must contain at least 8 characters, including letters and numbers'
+        })
+    )
+
+    password2 = forms.CharField(
+        label="Confirm Password",
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control'
+        })
+    )
+
     class Meta:
         model = CustomUser
         fields = ("username", "password1", "password2", "phone", "email")
@@ -40,3 +57,26 @@ class TaskFilterForm(forms.Form):
             self.fields['worker_id'].choices = [('', 'All')] + [
                 (member.id, member.username) for member in user.team.members.all()
             ]
+
+class ProfileForm(forms.ModelForm):
+    ROLE_CHOICES = (
+        (0, 'Manager'),
+        (1, 'Employee'),
+    )
+
+    userStatus = forms.ChoiceField(choices=ROLE_CHOICES, label='Role')
+    team = forms.ModelChoiceField(
+        queryset=None,  #
+        required=False,
+        empty_label='Not assigned',
+        label='Team'
+    )
+
+    class Meta:
+        model = CustomUser
+        fields = ['userStatus', 'team']
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        from .models import Team
+        self.fields['team'].queryset = Team.objects.all()
