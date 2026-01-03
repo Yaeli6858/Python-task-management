@@ -27,7 +27,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+AUTH_USER_MODEL = 'tasks.CustomUser'
+LOGIN_REDIRECT_URL = "/tasks/"
+LOGOUT_REDIRECT_URL = "/login/"
+LOGIN_URL = "/login/"
 # Application definition
 
 INSTALLED_APPS = [

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks List</title>
+
+</head>
+<body>
+<h2>Tasks</h2>
+
+<!-- סינון משימות -->
+<form method="get">
+    {{ filter_form.as_p }}
+    <button type="submit">Filter</button>
+</form>
+
+<!-- כפתור הוספת משימה למנהלים בלבד -->
+{% if user.userStatus == 0 %}
+<h2>Manager Dashboard</h2>
+<a href="{% url 'task_create' %}">Add New Task</a>
+{% else %}
+<h2>Employee Dashboard</h2>
+{% endif %}
+<a href="{% url 'task_list' %}">View Tasks</a>
+<ul>
+    {% for t in tasks %}
+        <li>
+            <!-- הצגת פרטי משימה -->
+            <strong>{{ t.title }}</strong> - {{ t.description }} -
+            {% if t.taskStatus == 0 %}
+                <span class="status-new">New</span>
+            {% elif t.taskStatus == 1 %}
+                <span class="status-in-progress">In Progress</span>
+            {% elif t.taskStatus == 2 %}
+                <span class="status-completed">Completed</span>
+            {% endif %}
+
+            <!-- עריכה ומחיקה למנהלים -->
+            {% if user.userStatus == 0 and t.task_performer is None %}
+                <a href="{% url 'task_update' t.pk %}">Edit</a>
+                <a href="{% url 'task_delete' t.pk %}">Delete</a>
+            {% endif %}
+
+            <!-- כפתור "קח משימה" לעובדים -->
+            {% if user.userStatus == 1 and t.task_performer is None %}
+                <form method="post" action="{% url 'task_take' t.pk %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Take Task</button>
+                </form>
+            {% endif %}
+        </li>
+    {% empty %}
+        <li>No tasks found</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<h2>Profile</h2>
+
+<p><strong>Username:</strong> {{ user.username }}</p>
+<p><strong>Email:</strong> {{ user.email }}</p>
+<p><strong>Phone:</strong> {{ user.phone }}</p>
+<p><strong>Team:</strong>
+    {% if user.team %}
+        {{ user.team.name }}
+    {% else %}
+        Not assigned
+    {% endif %}
+</p>
+<p><strong>Role:</strong>
+    {% if user.userStatus == 0 %}
+        Manager
+    {% elif user.userStatus == 1 %}
+        Employee
+    {% endif %}
+</p>
+
+<a href="{% url 'task_list' %}">Back to Task List</a>
+<a href="{% url 'logout' %}">Logout</a>
