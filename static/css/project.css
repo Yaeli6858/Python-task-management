@@ -110,6 +110,9 @@ body {
 .btn-primary:hover, .btn-submit:hover {
     background-color: #0b5ed7;
 }
+.register-card input[name="username"] + small.form-text {
+    display: none !important;
+}
 
 .btn-edit, .btn-delete, .btn-take, .btn-complete, .btn-cancel {
     padding: 6px 14px;
@@ -194,6 +197,55 @@ tr:hover { background-color: #e3f2fd; }
     margin: 4px;
     padding: 6px 16px;
 }
+/* ====== DELETE ACTIONS ====== */
+.delete-actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.delete-actions .btn-action {
+    min-width: 120px;
+    padding: 8px 0;
+    text-align: center;
+}
+
+
+/* ====== WARNING ICON ====== */
+.warning-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.warning-icon {
+    width: 60px;
+    height: 60px;
+    background: #ffeaea;
+    color: #d32f2f;
+    border-radius: 50%;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bounce 1.6s infinite, pulse 2s infinite;
+    box-shadow: 0 6px 15px rgba(211, 47, 47, 0.25);
+}
+
+/* קפיצה */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* פעימה עדינה */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.4); }
+    70% { box-shadow: 0 0 0 12px rgba(211, 47, 47, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
+}
+
 
 /* ====== FILTER FORM ====== */
 .filter-form {
@@ -296,3 +348,193 @@ tr:hover { background-color: #e3f2fd; }
 .navbar .nav-link:hover {
     text-decoration: underline;
 }
+/* ====== UI NAVBAR (DESIGN SYSTEM STYLE) ====== */
+.ui-navbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e3e6ea;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.ui-navbar .navbar-inner {
+    max-width: 2500px;
+    margin: auto;
+    padding: 10px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo */
+.app-logo {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #0d6efd;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Right side */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Username */
+.navbar-user {
+    font-size: 0.85rem;
+    color: #495057;
+    margin-right: 8px;
+}
+
+/* Links */
+.ui-navbar .nav-link {
+    color: #495057;
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.ui-navbar .nav-link:hover {
+    background: #f1f5ff;
+    color: #0d6efd;
+}
+
+/* Primary action */
+.ui-navbar .nav-link.primary {
+    background: #0d6efd;
+    color: white;
+}
+
+.ui-navbar .nav-link.primary:hover {
+    background: #0b5ed7;
+    color: white;
+}
+
+/* Logout */
+.ui-navbar .nav-link.logout {
+    color: #dc3545;
+}
+
+.ui-navbar .nav-link.logout:hover {
+    background: #fdecea;
+    color: #c82333;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .ui-navbar .navbar-inner {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .navbar-right {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* ====== PRIME STYLE NAVBAR ====== */
+.ui-navbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+/* מבנה פנימי */
+.ui-navbar .navbar-inner {
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* צד שמאל */
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* לוגו */
+.app-logo {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #0d6efd;
+    letter-spacing: 0.3px;
+}
+
+/* Hello */
+.navbar-user {
+    font-size: 0.85rem;
+    color: #6b7280;
+    padding-left: 12px;
+    border-left: 1px solid #e5e7eb;
+}
+
+/* צד ימין */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ====== NAV PILLS (Prime style) ====== */
+.nav-pill {
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+    color: #374151;
+    background: #f3f4f6;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.nav-pill:hover {
+    background: #e0e7ff;
+    color: #0d6efd;
+    transform: translateY(-1px);
+}
+
+/* Primary */
+.nav-pill.primary {
+    background: #0d6efd;
+    color: white;
+}
+
+.nav-pill.primary:hover {
+    background: #0b5ed7;
+    color: white;
+}
+
+/* Danger */
+.nav-pill.danger {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.nav-pill.danger:hover {
+    background: #fecaca;
+    color: #b91c1c;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .ui-navbar .navbar-inner {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .navbar-right {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+

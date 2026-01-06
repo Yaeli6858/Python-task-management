@@ -3,13 +3,21 @@
 
 {% block content %}
 <div class="card delete-card text-center">
-    <h2><span class="icon-warning">&#9888;</span> Delete Task</h2>
+<div class="warning-icon-wrapper">
+    <span class="warning-icon">⚠</span>
+</div>
+
+
     <p>Are you sure you want to delete <strong>{{ task.title }}</strong>?</p>
 
-    <form method="post" style="display:inline;">
+    <div class="delete-actions">
+    <form method="post">
         {% csrf_token %}
         <button type="submit" class="btn btn-delete btn-action">Yes, delete</button>
     </form>
+
     <a href="{% url 'task_list' %}" class="btn btn-secondary btn-action">Cancel</a>
+</div>
+
 </div>
 {% endblock %}

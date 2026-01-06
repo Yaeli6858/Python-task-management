@@ -13,20 +13,39 @@
     <!-- קובץ CSS אחיד -->
     <link rel="stylesheet" href="{% static 'css/project.css' %}">
 </head>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+});
+</script>
+
 <body>
+<nav class="navbar ui-navbar">
+    <div class="navbar-inner">
 
-<!-- תפריט עליון אחיד -->
-<nav class="p-3 bg-light mb-4">
-    {% if user.is_authenticated %}
-        <span>Hello {{ user.username }}</span> |
-        <a href="{% url 'task_list' %}">Tasks</a> |
-        <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-        <a href="{% url 'login' %}">Login</a> |
-        <a href="{% url 'register' %}">Register</a>
-    {% endif %}
+        <!-- צד שמאל -->
+        <div class="navbar-left">
+            <span class="app-logo">🗂 TaskFlow</span>
+        </div>
+
+        <!-- צד ימין -->
+        <div class="navbar-right">
+            {% if user.is_authenticated %}
+                <span class="navbar-user">      Hello {{ user.username }}</span>
+                <a class="nav-link" href="{% url 'task_list' %}">Tasks</a>
+                <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                <a class="nav-link logout" href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a class="nav-link" href="{% url 'login' %}">Login</a>
+                <a class="nav-link primary" href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
+
+    </div>
 </nav>
-
 <hr>
 
 <div class="container">

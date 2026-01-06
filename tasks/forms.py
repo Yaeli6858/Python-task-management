@@ -30,6 +30,16 @@ class TaskForm(forms.ModelForm):
 
 
 class CustomUserCreationForm(UserCreationForm):
+    username = forms.CharField(
+        label="Username",
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'data-bs-toggle': 'tooltip',
+            'data-bs-placement': 'right',
+            'title': 'Username must contain letters and numbers only'
+        })
+    )
+
     password1 = forms.CharField(
         label="Password",
         widget=forms.PasswordInput(attrs={
@@ -50,6 +60,7 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ("username", "password1", "password2", "phone", "email")
+
 
 
 class TaskFilterForm(forms.Form):
