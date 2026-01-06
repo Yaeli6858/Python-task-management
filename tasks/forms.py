@@ -15,10 +15,18 @@ class TaskForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)
-        # מוודא ששדה מבצע המשימה לא חובה
+
         self.fields['task_performer'].required = False
 
+        if user and user.team:
+            self.fields['task_performer'].queryset = CustomUser.objects.filter(
+                team=user.team,
+                userStatus=1  # רק עובדים
+            )
+        else:
+            self.fields['task_performer'].queryset = CustomUser.objects.none()
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -63,8 +71,10 @@ class TaskFilterForm(forms.Form):
         super().__init__(*args, **kwargs)
         if user and user.team:
             self.fields['worker_id'].choices = [('', 'All')] + [
-                (member.id, member.username) for member in user.team.members.all()
+                (member.id, member.username)
+                for member in user.team.members.filter(userStatus=1)  # רק עובדים רגילים
             ]
+
 
 class ProfileForm(forms.ModelForm):
     ROLE_CHOICES = (
