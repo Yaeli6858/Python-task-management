@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from .forms import TaskForm, CustomUserCreationForm, TaskFilterForm,ProfileForm
+from .forms import TaskForm, CustomUserCreationForm, TaskFilterForm, ProfileForm
 from .models import Task
 
 
@@ -89,7 +89,11 @@ class UpdateTaskView(UpdateView):
         else:  # עובד
             return Task.objects.filter(task_performer=user)
 
-    # כאן מוסיפים את form_valid כדי לעדכן את סטטוס
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user  # ← העברת המשתמש לטופס
+        return kwargs
+
     def form_valid(self, form):
         task = form.save(commit=False)
 
@@ -101,6 +105,7 @@ class UpdateTaskView(UpdateView):
 
         task.save()
         return redirect(self.get_success_url())
+
 
 @method_decorator(login_required, name='dispatch')
 class DeleteTaskView(DeleteView):
@@ -137,9 +142,17 @@ def take_task_view(request, pk):
 
 @login_required
 def profile_view(request):
-    return render(request, "tasks/profile.html", {
-        "user": request.user
-    })
+    user = request.user
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('task_list')
+    else:
+        form = ProfileForm(instance=user)
+
+    return render(request, 'tasks/profile.html', {'form': form})
 
 
 def register_view(request):
@@ -171,21 +184,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return redirect("login")
-from .forms import ProfileForm
 
-@login_required
-def profile_view(request):
-    user = request.user
-
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            return redirect('task_list')
-    else:
-        form = ProfileForm(instance=user)
-
-    return render(request, 'tasks/profile.html', {'form': form})
 
 @login_required
 def complete_task_view(request, pk):
