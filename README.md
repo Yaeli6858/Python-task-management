@@ -11,22 +11,22 @@ Managers create and assign tasks — employees take and complete them.
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![License](https://img.shields.io/badge/License-Educational-green?style=for-the-badge)
 
-##  Table of Contents
-- [Features](#features)
-- [Core Logic & Architecture](#core-logic--architecture)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-- [How It Works](#how-it-works)
-- [Screenshots](#screenshots)
-
 </div>
----
+
 This system bridges the gap between management and execution. It provides managers with full visibility into their team's workload while offering employees a streamlined interface to claim and complete tasks without administrative overhead.
----
+
 
 <p align="center">
   <img src="screenshots/screenshot.gif" width="600">
 </p>
+
+##  Table of Contents
+- [Features](#features)
+- [Core Logic & Architecture](#core-logic--architecture)
+- [Tech Stack](#tech-stack)
+- [Screenshots](#screenshots)
+- [Getting Started](#getting-started)
+- [How It Works](#how-it-works)
 
 ---
 
@@ -65,6 +65,32 @@ The application distinguishes between roles using a custom `userStatus` field in
 | Forms | django-widget-tweaks |
 | Environment | python-dotenv |
 
+---
+
+##  Screenshots
+
+###  Authentication Page
+![Login](screenshots/login.png)
+![Register](screenshots/register.png)
+
+###  Manager Dashboard
+![Dashboard](screenshots/tasks.png)
+##  Update Task
+
+![Update Task](screenshots/update.png)
+##  Delete  Task
+
+![Delete Task](screenshots/delete.png)
+
+
+##  Create New Task
+ ![Create Task](screenshots/create.png)
+
+###  Employee View
+ ![Employee View](screenshots/filter.png)
+
+###  Profile Page
+ ![Profile](screenshots/profile.png)
 ---
 
 ##  Getting Started
@@ -172,7 +198,7 @@ task-manager/
 
 ---
 
-## 🔄 How It Works
+##  How It Works
 
 ###  Manager Flow
 1. Log in as a manager
@@ -199,31 +225,6 @@ sqlparse==0.5.5
 tzdata==2025.3
 ```
 
----
-##  Screenshots
-
-###  Authentication Page
-![Login](screenshots/login.png)
-![Register](screenshots/register.png)
-
-###  Manager Dashboard
-![Dashboard](screenshots/tasks.png)
-##  Update Task
-
-![Update Task](screenshots/update.png)
-##  Delete  Task
-
-![Delete Task](screenshots/delete.png)
-
-
-##  Create New Task
- ![Create Task](screenshots/create.png)
-
-###  Employee View
- ![Employee View](screenshots/filter.png)
-
-###  Profile Page
- ![Profile](screenshots/profile.png)
 
 ---
 ##  Roadmap & Future Enhancements
