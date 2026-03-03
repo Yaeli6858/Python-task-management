@@ -12,16 +12,12 @@ Managers create and assign tasks — employees take and complete them.
 
 </div>
 
+
 ---
 
-##  Demo
-
-<!-- Add your GIF here after recording -->
-> 🎥 _Record a short GIF showing: login → task list → create task → take task → complete task_  
-> Then replace this line with:
-> ```
-> ![Demo](screenshots/demo.gif)
-> ```
+<p align="center">
+  <img src="screenshots/screenshot.gif" width="600">
+</p>
 
 ---
 
