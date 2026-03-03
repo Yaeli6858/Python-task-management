@@ -24,9 +24,9 @@ This system bridges the gap between management and execution. It provides manage
 - [Features](#features)
 - [Core Logic & Architecture](#core-logic--architecture)
 - [Tech Stack](#tech-stack)
-- [Screenshots](#screenshots)
 - [Getting Started](#getting-started)
 - [How It Works](#how-it-works)
+- [Screenshots](#screenshots)
 
 ---
 
@@ -65,32 +65,7 @@ The application distinguishes between roles using a custom `userStatus` field in
 | Forms | django-widget-tweaks |
 | Environment | python-dotenv |
 
----
 
-##  Screenshots
-
-###  Authentication Page
-![Login](screenshots/login.png)
-![Register](screenshots/register.png)
-
-###  Manager Dashboard
-![Dashboard](screenshots/tasks.png)
-##  Update Task
-
-![Update Task](screenshots/update.png)
-##  Delete  Task
-
-![Delete Task](screenshots/delete.png)
-
-
-##  Create New Task
- ![Create Task](screenshots/create.png)
-
-###  Employee View
- ![Employee View](screenshots/filter.png)
-
-###  Profile Page
- ![Profile](screenshots/profile.png)
 ---
 
 ##  Getting Started
@@ -224,7 +199,32 @@ asgiref==3.11.1
 sqlparse==0.5.5
 tzdata==2025.3
 ```
+---
 
+##  Screenshots
+
+###  Authentication Page
+![Login](screenshots/login.png)
+![Register](screenshots/register.png)
+
+###  Manager Dashboard
+![Dashboard](screenshots/tasks.png)
+##  Update Task
+
+![Update Task](screenshots/update.png)
+##  Delete  Task
+
+![Delete Task](screenshots/delete.png)
+
+
+##  Create New Task
+ ![Create Task](screenshots/create.png)
+
+###  Employee View
+ ![Employee View](screenshots/filter.png)
+
+###  Profile Page
+ ![Profile](screenshots/profile.png)
 
 ---
 ##  Roadmap & Future Enhancements
@@ -236,4 +236,4 @@ tzdata==2025.3
 ##  License
 
 This project is for educational purposes.
----
+
