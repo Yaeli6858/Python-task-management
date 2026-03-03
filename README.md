@@ -1,6 +1,5 @@
-<div align="center">
 
-# 📋 Task Manager
+#  Task Manager
 
 **A web-based task management system built with Django**  
 Managers create and assign tasks — employees take and complete them.
@@ -15,7 +14,7 @@ Managers create and assign tasks — employees take and complete them.
 
 ---
 
-## 🎬 Demo
+##  Demo
 
 <!-- Add your GIF here after recording -->
 > 🎥 _Record a short GIF showing: login → task list → create task → take task → complete task_  
@@ -26,48 +25,19 @@ Managers create and assign tasks — employees take and complete them.
 
 ---
 
-## 📸 Screenshots
+##  Features
 
-### 🔐 Login Page
-<!-- screenshot: login page -->
-> _Add screenshot here_
-> `![Login](screenshots/login.png)`
-
-### 📊 Manager Dashboard
-<!-- screenshot: task list with all statuses visible -->
-> _Add screenshot here_
-> `![Dashboard](screenshots/manager-dashboard.png)`
-
-### ➕ Create New Task
-<!-- screenshot: create task form filled in -->
-> _Add screenshot here_
-> `![Create Task](screenshots/create-task.png)`
-
-### 👷 Employee View
-<!-- screenshot: employee dashboard with Take Task button -->
-> _Add screenshot here_
-> `![Employee View](screenshots/employee-view.png)`
-
-### 👤 Profile Page
-<!-- screenshot: profile page -->
-> _Add screenshot here_
-> `![Profile](screenshots/profile.png)`
+-  **Authentication** – Register, login, and logout
+-  **Two roles** – Manager and Employee with different permissions
+-  **Task management** – Create, edit, delete, and assign tasks
+-  **Task lifecycle** – `New` → `In Progress` → `Completed`
+-  **Filtering** – Filter by status, assignment, and worker
+-  **Profile page** – View and update personal info
+-  **Team-based** – Each user only sees their own team's tasks
 
 ---
 
-## ✨ Features
-
-- 🔐 **Authentication** – Register, login, and logout
-- 👥 **Two roles** – Manager and Employee with different permissions
-- 📋 **Task management** – Create, edit, delete, and assign tasks
-- ✅ **Task lifecycle** – `New` → `In Progress` → `Completed`
-- 🔍 **Filtering** – Filter by status, assignment, and worker
-- 👤 **Profile page** – View and update personal info
-- 🏢 **Team-based** – Each user only sees their own team's tasks
-
----
-
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -80,7 +50,7 @@ Managers create and assign tasks — employees take and complete them.
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 
@@ -126,27 +96,27 @@ python seed_data.py
 python manage.py runserver
 ```
 
-Open your browser at: **http://127.0.0.1:8000** 🎉
+Open your browser at: **http://127.0.0.1:8000** 
 
 ---
 
-## 👤 Demo Accounts
+##  Demo Accounts
 
 After running `seed_data.py`:
 
 | Role | Username | Password | Team |
 |------|----------|----------|------|
-| 👑 Manager | `yaeli_porat` | `password123` | Alpha |
-| 👑 Manager | `tamar_winer` | `password123` | Beta |
-| 👷 Employee | `devora` | `password123` | Alpha |
-| 👷 Employee | `shira` | `password123` | Alpha |
-| 👷 Employee | `gili` | `password123` | Alpha |
-| 👷 Employee | `pnini` | `password123` | Beta |
-| 👷 Employee | `noa` | `password123` | Beta |
+|  Manager | `yaeli_porat` | `password123` | Alpha |
+|  Manager | `tamar_winer` | `password123` | Beta |
+|  Employee | `devora` | `password123` | Alpha |
+|  Employee | `shira` | `password123` | Alpha |
+|  Employee | `gili` | `password123` | Alpha |
+|  Employee | `pnini` | `password123` | Beta |
+|  Employee | `noa` | `password123` | Beta |
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 task-manager/
@@ -173,13 +143,13 @@ task-manager/
 
 ## 🔄 How It Works
 
-### 👑 Manager Flow
+###  Manager Flow
 1. Log in as a manager
 2. View all tasks in your team with status indicators
 3. Create a new task and optionally assign it to an employee
 4. Edit or delete unassigned tasks
 
-### 👷 Employee Flow
+###  Employee Flow
 1. Log in as an employee
 2. Browse available (unassigned) tasks in your team
 3. Click **"Take Task"** to claim a task → status becomes `In Progress`
@@ -187,28 +157,7 @@ task-manager/
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Here's how:
-
-1. Fork the project
-2. Create your feature branch
-```bash
-git checkout -b feature/amazing-feature
-```
-3. Commit your changes
-```bash
-git commit -m "Add amazing feature"
-```
-4. Push to the branch
-```bash
-git push origin feature/amazing-feature
-```
-5. Open a Pull Request
-
----
-
-## 📦 Dependencies
+##  Dependencies
 
 ```
 Django==6.0.2
@@ -220,13 +169,35 @@ tzdata==2025.3
 ```
 
 ---
+##  Screenshots
 
-## 📄 License
+###  Authentication Page
+![Login](screenshots/login.png)
+![Register](screenshots/register.png)
+
+###  Manager Dashboard
+![Dashboard](screenshots/tasks.png)
+##  Update Task
+
+![Update Task](screenshots/update.png)
+##  Delete  Task
+
+![Delete Task](screenshots/delete.png)
+
+
+##  Create New Task
+ ![Create Task](screenshots/create.png)
+
+###  Employee View
+ ![Employee View](screenshots/filter.png)
+
+###  Profile Page
+ ![Profile](screenshots/profile.png)
+
+---
+
+##  License
 
 This project is for educational purposes.
 
 ---
-
-<div align="center">
-Made with ❤️ using Django
-</div>
