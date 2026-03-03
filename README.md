@@ -227,6 +227,28 @@ tzdata==2025.3
  ![Profile](screenshots/profile.png)
 
 ---
+##  Documentation & Development Process
+The development of this project followed a structured **Software Development Life Cycle (SDLC)**. Each phase was documented to ensure data integrity, clear business logic, and a seamless user experience.
+
+### 1. [System Characterization & Specs](documents/progress.docx)
+*Focuses on the foundation and organizational rules of the application.*
+* **Role-Based Permissions**: Defined the distinct authorities for **Managers** (full CRUD, team oversight) and **Employees** (task claiming and progress updates).
+* **Entity Mapping**: Detailed the required fields for **Users**, **Tasks**, and **Teams** to ensure a robust database schema.
+* **Organizational Structure**: Established "Team Isolation" logic, ensuring no data overlap between different departments.
+
+### 2. [Functional Requirements & Logic](documents/functions.docx)
+*Outlines the backend behavior and automated business workflows.*
+* **Task State Machine**: Defined automated status transitions, such as moving a task to `In Progress` immediately upon being claimed by a worker.
+* **Access Control Lists (ACL)**: Mapped out restrictions, such as preventing users without an assigned team or role from accessing the task dashboard.
+* **Admin Operations**: Reserved high-level management (Team creation/deletion) for administrative users only.
+
+### 3. [UI/UX Mapping & User Flows](documents/features.docx)
+*Bridged the gap between backend views and frontend templates.*
+* **Template Architecture**: Detailed documentation for every HTML view, including Authentication, Profile management, and the Task Dashboard.
+* **Navigation Flow**: Mapped the user journey, such as the redirection logic after registration or task creation.
+* **Interactive Elements**: Mapped all UI components (buttons, filters, forms) to their respective Django POST/GET actions.
+
+---
 ##  Roadmap & Future Enhancements
 - [ ] **Email Notifications**: Automatic alerts for managers when a task is marked as `Completed`.
 - [ ] **Analytics Dashboard**: Integrated charts (Chart.js) to track team performance and task completion rates.
