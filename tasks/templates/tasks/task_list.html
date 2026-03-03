@@ -29,6 +29,7 @@
         <tr>
             <th>Title</th>
             <th>Description</th>
+            <th>Due Date</th>
             <th>Status</th>
             <th>Actions</th>
         </tr>
@@ -38,6 +39,7 @@
         <tr class="{% if t.task_performer == user %}my-task{% endif %}">
             <td>{{ t.title }}</td>
             <td>{{ t.description }}</td>
+            <td>{{ t.goalDate }}</td>
             <td>
                 {% if t.taskStatus == 0 %}<span class="status-new">New</span>{% elif t.taskStatus == 1 %}<span class="status-in-progress">In Progress</span>{% elif t.taskStatus == 2 %}<span class="status-completed">Completed</span>{% endif %}
                 {% if t.task_performer %}<br><small>by {{ t.task_performer.username }}</small>{% endif %}

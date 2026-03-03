@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from enum import Enum
+from django.core.exceptions import ValidationError 
 
 #enum
 
@@ -42,9 +43,9 @@ class Team(models.Model):
     def clean(self):
         if self.manager:
             if self.manager.userStatus != 0:
-                return("Manager must have MANAGER role")
+                raise ValidationError("Manager must have MANAGER role")
             if self.manager.team and self.manager.team != self:
-                return ("Manager must belong to this team")
+                raise ValidationError("Manager must belong to this team")
 
     def __str__(self):
         return self.name
