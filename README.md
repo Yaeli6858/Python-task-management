@@ -3,16 +3,25 @@
 
 **A web-based task management system built with Django**  
 Managers create and assign tasks — employees take and complete them.
-
+<div>
+  
 ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-6.0-092E20?style=for-the-badge&logo=django&logoColor=white)
 ![SQLite](https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![License](https://img.shields.io/badge/License-Educational-green?style=for-the-badge)
 
+##  Table of Contents
+- [Features](#features)
+- [Core Logic & Architecture](#core-logic--architecture)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [How It Works](#how-it-works)
+- [Screenshots](#screenshots)
+
 </div>
-
-
+---
+This system bridges the gap between management and execution. It provides managers with full visibility into their team's workload while offering employees a streamlined interface to claim and complete tasks without administrative overhead.
 ---
 
 <p align="center">
@@ -31,6 +40,18 @@ Managers create and assign tasks — employees take and complete them.
 -  **Profile page** – View and update personal info
 -  **Team-based** – Each user only sees their own team's tasks
 
+---
+##  Core Logic & Architecture
+
+### Role-Based Access Control (RBAC)
+The application distinguishes between roles using a custom `userStatus` field in the User model:
+* **Managers:** Can perform full CRUD operations on tasks and assign them to specific team members.
+* **Employees:** Can only "Claim" (Take) unassigned tasks and move them through the lifecycle (`New` → `In Progress` → `Completed`).
+
+### Data Integrity & Scoping
+* **Team Isolation:** A middleware-like logic in the Views ensures that users (both Managers and Employees) can only interact with tasks belonging to their assigned `Team`.
+* **State Management:** Task status transitions are handled via specific POST actions to prevent unauthorized state changes.
+* 
 ---
 
 ##  Tech Stack
@@ -57,7 +78,7 @@ Managers create and assign tasks — employees take and complete them.
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/your-username/task-manager.git
+git clone https://github.com/yaeli6858/python-task-management.git
 cd task-manager
 ```
 
@@ -76,18 +97,22 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+**4. Configure Environment** Create a `.env` file in the root directory and add your configurations:
+```bash
+SECRET_KEY=your_django_secret_key
+DEBUG=True
 
-**4. Apply migrations**
+**5. Apply migrations**
 ```bash
 python manage.py migrate
 ```
 
-**5. Load sample data** _(optional – for demo/screenshots)_
+**6. Load sample data** _(optional – for demo/screenshots)_
 ```bash
 python seed_data.py
 ```
 
-**6. Run the development server**
+**7. Run the development server**
 ```bash
 python manage.py runserver
 ```
@@ -134,6 +159,16 @@ task-manager/
 ├── manage.py
 └── requirements.txt
 ```
+##  Architecture & Security
+### Data Models
+* **CustomUser**: Extends Django's `AbstractUser` to include specialized roles (`userStatus`: 0 = Manager, 1 = Employee) and team associations.
+* **Team**: A grouping entity that facilitates "Team Isolation" logic, ensuring data privacy between different departments.
+* **Task**: Features a dynamic state machine (`New` -> `In Progress` -> `Completed`) and handles assignments via ForeignKeys.
+
+### Security & Best Practices
+* **Environment Safety**: Leverages `python-dotenv` to decouple sensitive configurations (like `SECRET_KEY`) from the codebase.
+* **UI Logic**: Utilizes `django-widget-tweaks` to maintain clean templates while injecting Bootstrap 5 classes dynamically into Django-native forms.
+* **Role-Based Access Control (RBAC)**: Implements server-side validation to ensure employees cannot access manager-only views (Create/Edit/Delete).
 
 ---
 
@@ -191,9 +226,13 @@ tzdata==2025.3
  ![Profile](screenshots/profile.png)
 
 ---
-
+##  Roadmap & Future Enhancements
+- [ ] **Email Notifications**: Automatic alerts for managers when a task is marked as `Completed`.
+- [ ] **Analytics Dashboard**: Integrated charts (Chart.js) to track team performance and task completion rates.
+- [ ] **REST API**: Implementing Django REST Framework to support mobile or external integrations.
+- [ ] **PostgreSQL Migration**: Transitioning from SQLite to a production-ready database.
+---
 ##  License
 
 This project is for educational purposes.
-
 ---
