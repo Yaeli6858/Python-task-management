@@ -27,9 +27,8 @@ This system bridges the gap between management and execution. It provides manage
 - [Getting Started](#getting-started)
 - [How It Works](#how-it-works)
 - [Screenshots](#screenshots)
-- [Documentation & SDLC](#-documentation--development-process)
-2. וודאי
----
+- [Documentation & SDLC](#documentation--development-process)
+----
 
 ##  Features
 
